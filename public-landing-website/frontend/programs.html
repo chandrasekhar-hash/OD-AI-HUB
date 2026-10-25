@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Programs &amp; Courses – OD AI Academy</title>
+  <meta name="description" content="Explore practical AI, tech, coding, and engineering courses for students, college learners, and career starters in Odisha." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/website/css/style.css?v=2026_resize_ring_v6" />
+  <script src="/website/js/assets.js"></script>
+  <script src="/website/js/api.js"></script>
+  <style>
+    /* ─── Programs Header (Warm Luxury Editorial) ─── */
+    .prog-header {
+      background:
+        linear-gradient(90deg, rgba(16, 13, 8, 0.72) 0%, rgba(20, 15, 9, 0.45) 36%, transparent 68%),
+        url("/website/images/Academy%20page%20image.png");
+      background-size: cover !important;
+      background-position: 72% center !important;
+      background-repeat: no-repeat !important;
+      color: #fff;
+      height: 100vh;
+      height: 100svh;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: calc(var(--nav-height, 64px) + clamp(16px, 3vh, 36px)) clamp(24px, 5vw, 64px) 36px;
+      box-sizing: border-box;
+      position: relative;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.28);
+      overflow: hidden;
+      transition: background 0.6s ease;
+    }
+    .prog-header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--muted-peach) 60%, transparent 100%);
+      opacity: 0.85;
+    }
+    .hero-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #FAF7F2;
+      font: 600 13.5px var(--font-sans);
+      margin-bottom: 20px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 9px 22px;
+      border-radius: 99px;
+      border: 1.5px solid rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.20);
+      letter-spacing: 0.02em;
+      transition: all 0.25s ease;
+      width: fit-content;
+    }
+    .hero-back-btn:hover {
+      background: #FAF7F2;
+      color: var(--color-charcoal);
+      border-color: #FAF7F2;
+      transform: translateX(-4px);
+      box-shadow: 0 8px 30px rgba(201, 168, 76, 0.35);
+    }
+    .prog-header .badge-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201, 168, 76, 0.16);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      padding: 6px 16px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+    }
+    .prog-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 5.2vw, 58px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      margin-bottom: 14px;
+      color: #FAF7F2;
+    }
+    .prog-header p {
+      color: rgba(250, 247, 242, 0.85);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      max-width: 68ch;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ─── Filter Bar (Sticky Glassmorphic) ─── */
+    .filter-bar {
+      background: rgba(250, 247, 242, 0.88);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--beige-dark);
+      padding: 14px clamp(16px, 4vw, 40px);
+      position: sticky;
+      top: 60px;
+      z-index: 20;
+      box-shadow: 0 2px 14px 0 rgba(139, 115, 85, 0.08);
+    }
+    .filter-container {
+      max-width: 1240px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .program-bar-left {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .current-program-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 20px;
+      border-radius: 99px;
+      background: linear-gradient(135deg, var(--color-warm-brown) 0%, var(--color-warm-brown-dark) 100%);
+      color: #fff;
+      font: 600 13.5px var(--font-sans);
+      box-shadow: 0 4px 16px rgba(107, 88, 64, 0.35);
+      transition: all 0.3s ease;
+    }
+    .current-program-badge .badge-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      display: inline-grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .switch-program-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border-radius: 99px;
+      border: 1.5px solid var(--beige-dark);
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(10px);
+      color: var(--charcoal);
+      font: 500 13px var(--font-sans);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .switch-program-link:hover {
+      border-color: var(--warm-brown);
+      color: var(--warm-brown);
+      background: #fff;
+      transform: translateX(-2px);
+    }
+    .search-input-box {
+      position: relative;
+      min-width: 260px;
+    }
+    .search-input-box input {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      border-radius: 99px;
+      border: 1.5px solid rgba(139, 115, 85, 0.20);
+      background: rgba(255, 255, 255, 0.70);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+    .search-input-box input:focus {
+      border-color: rgba(139, 115, 85, 0.50);
+      box-shadow: 0 0 0 4px rgba(232, 196, 160, 0.25);
+      background: #fff;
+    }
+    .search-input-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--warm-gray);
+      font-style: normal;
+      font-size: 15px;
+    }
+
+    .programs-body {
+      max-width: 1240px;
+      margin: 36px auto 70px;
+      padding: 0 clamp(16px, 4vw, 40px);
+    }
+
+    .group-chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .group-chips .chp {
+      padding: 8px 18px;
+      border-radius: 99px;
+      border: 1.5px solid var(--beige-dark);
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(10px);
+      font: 500 13px var(--font-sans);
+      cursor: pointer;
+      color: var(--charcoal);
+      transition: all 0.22s ease;
+      box-shadow: 0 2px 8px rgba(139, 115, 85, 0.06);
+    }
+    .group-chips .chp:hover {
+      border-color: var(--warm-brown);
+      color: var(--warm-brown);
+      background: #fff;
+      transform: translateY(-1px);
+    }
+    .group-chips .chp.on {
+      background: linear-gradient(135deg, var(--color-warm-brown) 0%, var(--color-warm-brown-dark) 100%) !important;
+      color: #fff !important;
+      border-color: var(--warm-brown) !important;
+      box-shadow: 0 4px 14px rgba(107, 88, 64, 0.35);
+    }
+
+    /* ─── Warm Luxury Healthcare Course Cards ─── */
+    .course-card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1.5px solid rgba(255, 255, 255, 0.92);
+      border-radius: 22px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-glass);
+      transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.26s ease, border-color 0.26s ease, background 0.26s ease;
+      position: relative;
+    }
+    .course-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px -12px rgba(139, 115, 85, 0.25), 0 0 0 1px rgba(232, 196, 160, 0.50);
+      border-color: rgba(232, 196, 160, 0.70);
+      background: rgba(255, 255, 255, 0.90);
+    }
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+    .course-icon-box {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(232, 196, 160, 0.35) 0%, rgba(201, 168, 76, 0.20) 100%);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      display: grid;
+      place-items: center;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(139, 115, 85, 0.08);
+    }
+    .course-card:hover .course-icon-box {
+      transform: scale(1.08) rotate(2deg);
+      background: linear-gradient(135deg, rgba(232, 196, 160, 0.55) 0%, rgba(201, 168, 76, 0.35) 100%);
+    }
+    .course-icon-box svg {
+      width: 26px;
+      height: 26px;
+      stroke: var(--color-warm-brown, #8B7355) !important;
+      fill: none !important;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: block;
+    }
+    .cat-badge {
+      display: inline-block;
+      padding: 5px 13px;
+      border-radius: 99px;
+      background: rgba(201, 168, 76, 0.12);
+      border: 1px solid rgba(201, 168, 76, 0.28);
+      color: var(--color-warm-brown-dark);
+      font-size: 11.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .course-title {
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 0 0 10px;
+      line-height: 1.25;
+      cursor: pointer;
+      transition: color 0.18s;
+    }
+    .course-title:hover { color: var(--color-warm-brown); }
+    .course-for {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 240, 232, 0.85);
+      border: 1px solid var(--beige-dark);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--charcoal-soft);
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+    .course-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 12.5px;
+      color: var(--warm-gray);
+    }
+    .course-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .course-desc {
+      color: var(--charcoal-soft);
+      font-size: 13.5px;
+      line-height: 1.6;
+      margin: 0 0 18px;
+      flex: 1;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid rgba(237, 231, 218, 0.85);
+      margin-top: auto;
+    }
+    .card-pricing b {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--charcoal);
+      font-family: var(--font-display);
+      letter-spacing: -0.01em;
+    }
+    .card-pricing s {
+      font-size: 13px;
+      color: var(--warm-gray);
+      margin-left: 6px;
+    }
+    .card-arrow-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-warm-brown);
+      text-decoration: none;
+      transition: gap 0.18s;
+    }
+    .card-arrow-link:hover { gap: 8px; }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <nav id="navbar">
+    <a class="lg" href="/" id="brand-link">
+      <img id="lgi" alt="OD AI HUB Logo" width="42" height="42" src="/static/logo.jpg" />
+      <span>OD AI HUB<small>Learn • Build • Innovate • Scale</small></span>
+    </a>
+
+    <div class="lk" id="nav-links">
+      <a href="/" id="nav-home">Home</a>
+      <a href="/academy" class="on" id="nav-academy">Academy</a>
+      <a href="/technologies" id="nav-tech">Technologies</a>
+      <a href="/innovation-lab" id="nav-inno">Innovation Lab</a>
+      <a href="/startups" id="nav-startups">Startups</a>
+      <a href="/for-business" id="nav-business">For Business</a>
+      <a href="/about" id="nav-about">About</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn nav-enq-btn" data-enq="Academy Counselling" id="nav-enquire-btn">Enquire Now</button>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" type="button">
+        <svg class="icon-hamburger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Programs Page Hero Banner -->
+  <header class="prog-header" id="prog-hero">
+    <div style="max-width:1240px;margin:auto;">
+      <a href="/academy#ring" class="hero-back-btn" id="hero-back-link">
+        <span style="font-size:18px;">←</span> Choose Another Program (Academy 3D Ring)
+      </a>
+      <div class="badge-track" id="track-badge">
+        <span id="track-icon">🎓</span>
+        <span id="track-name">Program Catalog</span>
+      </div>
+      <h1 id="track-title">Course Catalog</h1>
+      <p id="track-desc">
+        Explore practical curriculum designed to build in-demand skills with live projects, mentors and recognized certifications.
+      </p>
+    </div>
+  </header>
+
+  <!-- Filter & Category Tabs Bar -->
+  <div class="filter-bar">
+    <div class="filter-container">
+      <div class="program-bar-left">
+        <div class="current-program-badge" id="program-active-badge">
+          <span class="badge-icon" id="badge-icon-letter">S</span>
+          <span id="badge-program-title">School Programs</span>
+        </div>
+      </div>
+      <div class="search-input-box">
+        <i>🔍</i>
+        <input type="text" id="course-search" placeholder="Search courses..." aria-label="Search courses" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Programs Grid Body -->
+  <main class="programs-body">
+    <!-- Sub-group filters e.g. Class 5-7, Class 8-10, B.Tech, BCA -->
+    <div class="group-chips" id="group-chips"></div>
+
+    <!-- Courses Grid -->
+    <div class="grid" id="courses-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+      <!-- Skeletons loaded initially -->
+    </div>
+  </main>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="g">
+      <div>
+        <h4 style="font-size:22px;">OD AI HUB</h4>
+        <p style="margin:4px 0 12px;color:#8C684B;">Learn • Build • Innovate • Scale</p>
+        A stronger Odisha through AI
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <a href="/">Home</a>
+        <a href="/academy">Academy</a>
+        <a href="/technologies">Technologies</a>
+        <a href="/innovation-lab">Innovation Lab</a>
+        <a href="/startups">Startups</a>
+        <a href="/for-business">For Business</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="/academy#why">FAQs</a>
+        <a href="javascript:void(0)" onclick="openEnquiryModal('Admissions Counselling')">Admissions</a>
+        <a href="javascript:void(0)" onclick="toast('Certificate verification portal coming soon.')">Certificate verification</a>
+      </div>
+      <div>
+        <h4>Connect with us</h4>
+        OD AI HUB<br />
+        Berhampur, Ganjam, Odisha, India<br />
+        <a href="mailto:info@odaihub.in" style="margin-top:6px;">info@odaihub.in</a>
+      </div>
+    </div>
+    <div class="c">
+      © 2026 OD AI HUB. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Enquiry Modal -->
+  <div class="md" id="md" hidden>
+    <form class="mc" id="mc"></form>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="/website/js/assets.js"></script>
+  <script src="/website/js/api.js"></script>
+  <script src="/website/js/enquiry.js"></script>
+  <script>
+    // ── Medisphere-style course icon mapper ──
+    // Returns an inline SVG string matched by course title keywords.
+    function getCourseIcon(title) {
+      const t = (title || '').toLowerCase();
+      // Map keyword groups → SVG path(s)
+      const icons = [
+        // AI / Machine Learning / Deep Learning
+        { k: ['artificial intelligence','machine learning','deep learning','neural','ai ','ai&','ai,','generative ai','llm','nlp','ai for'], svg: '<circle cx="13" cy="13" r="4"/><circle cx="3" cy="6" r="2"/><circle cx="23" cy="6" r="2"/><circle cx="23" cy="20" r="2"/><circle cx="3" cy="20" r="2"/><line x1="3" y1="6" x2="13" y2="13"/><line x1="23" y1="6" x2="13" y2="13"/><line x1="23" y1="20" x2="13" y2="13"/><line x1="3" y1="20" x2="13" y2="13"/>' },
+        // Web / Full-Stack / Frontend / React / HTML
+        { k: ['web dev','full stack','fullstack','frontend','react','html','css','javascript','next.js','vue','angular'], svg: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="12" y1="2" x2="12" y2="22"/>' },
+        // Data Science / Analytics / Statistics
+        { k: ['data science','data analytics','analytics','statistics','tableau','power bi','data visuali'], svg: '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>' },
+        // Python / Programming
+        { k: ['python','programming','coding','c++','java ','golang','rust','backend'], svg: '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>' },
+        // Robotics / IoT / Electronics / Hardware / Arduino
+        { k: ['robotics','iot','internet of things','arduino','raspberry','hardware','electronics','embedded','microcontroller'], svg: '<rect x="2" y="7" width="20" height="14" rx="3"/><circle cx="12" cy="14" r="3"/><path d="M8 7V5a2 2 0 0 1 4 0v2"/><path d="M16 7V5a2 2 0 0 1 4 0v2"/><line x1="5" y1="7" x2="5" y2="5"/>' },
+        // Cloud / DevOps / AWS / Azure / Docker
+        { k: ['cloud','devops','aws','azure','gcp','docker','kubernetes','linux','deployment'], svg: '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 0 1 0 9Z"/>' },
+        // Cybersecurity / Ethical Hacking / Network Security
+        { k: ['cybersecurity','cyber security','ethical hacking','network security','penetration','osint','security'], svg: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>' },
+        // Mobile / Android / iOS / Flutter
+        { k: ['mobile','android','ios','flutter','react native','app development'], svg: '<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>' },
+        // Game Development
+        { k: ['game','unity','unreal','game dev'], svg: '<polygon points="5 3 19 12 5 21 5 3"/>' },
+        // Database / SQL / MongoDB
+        { k: ['database','sql','mysql','mongodb','postgresql','nosql','firebase'], svg: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>' },
+        // Design / UI UX / Figma
+        { k: ['ui/ux','ux design','ui design','figma','design','graphic','canva','adobe'], svg: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/>' },
+        // Digital Marketing / SEO / Social Media
+        { k: ['digital marketing','seo','social media','marketing','content','email marketing'], svg: '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>' },
+        // Business / Entrepreneurship / MBA
+        { k: ['business','entrepreneurship','mba','management','startup','leadership','strategy'], svg: '<path d="M22 16.92V19a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3 0h2.09a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L6.91 7a16 16 0 0 0 6.08 6.08l.43-.43a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 20 15z"/>' },
+        // Finance / Accounting / Tally
+        { k: ['finance','accounting','tally','fintech','banking','gst'], svg: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>' },
+        // School / Kids / Class / Foundation
+        { k: ['school','kids','class ','class5','class6','class7','class8','class9','class10','class11','class12','foundation','beginner','junior'], svg: '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>' },
+        // Certificate / Diploma / Professional
+        { k: ['certificate','diploma','professional','certification','pgd'], svg: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>' },
+        // Healthcare / Medical / Biotech
+        { k: ['health','medical','biotech','pharma','nursing'], svg: '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>' },
+        // Agriculture / AgriTech
+        { k: ['agri','farm','agriculture'], svg: '<path d="M12 22V12"/><path d="M12 12C12 7 7 3 2 3"/><path d="M12 12C12 7 17 3 22 3"/>' },
+        // Soft Skills / Communication / English
+        { k: ['soft skill','communication','english','public speaking','interview'], svg: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' },
+        // Internship / Project / Placement
+        { k: ['internship','placement','career','project','job'], svg: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><path d="M8 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>' }
+      ];
+      for (const ic of icons) {
+        if (ic.k.some(k => t.includes(k))) return ic.svg;
+      }
+      // Default: graduation cap
+      return '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>';
+    }
+
+    // Darken a hex color by pct (0–1)
+    function darkenHex(hex, pct) {
+      hex = hex.replace('#','');
+      if (hex.length === 3) hex = hex.split('').map(c => c+c).join('');
+      const r = Math.max(0, Math.round(parseInt(hex.slice(0,2),16) * (1-pct)));
+      const g = Math.max(0, Math.round(parseInt(hex.slice(2,4),16) * (1-pct)));
+      const b = Math.max(0, Math.round(parseInt(hex.slice(4,6),16) * (1-pct)));
+      return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+    }
+
+    let allCategories = [];
+    let currentCategorySlug = 'school';
+    let currentGroupFilter = 'All';
+    let loadedCourses = [];
+
+    // Parse URL parameter e.g. /programs?category=school
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialSlug = urlParams.get('category') || 'school';
+
+    async function initProgramsPage() {
+      // 1. Fetch categories
+      allCategories = await window.odApi.getCategories();
+      if (!allCategories || !allCategories.length) {
+        allCategories = [
+          { id: 1, slug: 'school', name: 'School Programs', tagline: 'Spark curiosity early.', accent_color: '#A65A3A', icon_letter: 'S', description: 'AI, coding, robotics and future skills for Class 5 to 12, taught through play and projects.' },
+          { id: 2, slug: 'diploma', name: 'Diploma Programs', tagline: 'Skills employers want.', accent_color: '#68705A', icon_letter: 'D', description: 'Job-oriented technology diplomas for learners who want to start working sooner.' },
+          { id: 3, slug: 'college', name: 'College Programs', tagline: 'Go beyond the syllabus.', accent_color: '#8C684B', icon_letter: 'C', description: 'Industry tracks that sit alongside your degree, with real tools and real projects.' },
+          { id: 4, slug: 'non-tech', name: 'Non-Tech Programs', tagline: 'AI for every field.', accent_color: '#8F4A2D', icon_letter: 'N', description: 'No coding background needed. Learn how to use AI in your own field and career.' },
+          { id: 5, slug: 'internships', name: 'Internships and Industry Projects', tagline: 'Real work, real experience.', accent_color: '#A65A3A', icon_letter: 'I', description: 'Work on live projects with industry partners and build a portfolio employers notice.' },
+          { id: 6, slug: 'career', name: 'Career and Placement Support', tagline: 'Get ready. Get hired.', accent_color: '#8F4A2D', icon_letter: 'P', description: 'Interview preparation, mock tests, resume building and career guidance to turn skills into a job.' }
+        ];
+      }
+
+      // 2. Load active category (isolated - other programs are not displayed here)
+      await switchCategory(initialSlug, false);
+
+      // Search input handler
+      const searchInput = document.getElementById('course-search');
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          renderCourses();
+        });
+      }
+
+      // Mobile navigation toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(a => {
+          a.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+          });
+        });
+      }
+    }
+
+    async function switchCategory(slug, updateHistory = true) {
+      currentCategorySlug = slug;
+      window.currentCategorySlug = slug;
+      currentGroupFilter = 'All';
+
+      if (updateHistory) {
+        const newUrl = `${window.location.pathname}?category=${slug}`;
+        window.history.pushState({ category: slug }, '', newUrl);
+      }
+
+      // Update hero banner texts and color
+      const cat = allCategories.find(c => c.slug === slug) || { name: 'Programs', description: 'Explore curriculum' };
+      const accent = cat.accent_color || '#A65A3A';
+
+      // Update active program badge
+      const badge = document.getElementById('program-active-badge');
+      if (badge) {
+        badge.style.background = accent;
+        const iconEl = document.getElementById('badge-icon-letter');
+        if (iconEl) iconEl.textContent = cat.icon_letter || '🎓';
+        const titleEl = document.getElementById('badge-program-title');
+        if (titleEl) titleEl.textContent = cat.name;
+      }
+      const searchInput = document.getElementById('course-search');
+      if (searchInput) {
+        searchInput.placeholder = `Search within ${cat.name}...`;
+      }
+
+      const heroEl = document.getElementById('prog-hero');
+      if (heroEl) {
+        heroEl.style.setProperty('--accent-mid', darkenHex(accent, 0.25));
+        heroEl.style.setProperty('--accent-dark', darkenHex(accent, 0.55));
+      }
+      document.getElementById('track-badge').style.borderColor = accent;
+      document.getElementById('track-badge').style.background = accent + '22';
+      document.getElementById('track-icon').textContent = cat.icon_letter || '🎓';
+      document.getElementById('track-name').textContent = `${cat.name} Catalog`;
+      document.getElementById('track-title').textContent = `${cat.name} — Course Catalog`;
+      document.getElementById('track-desc').textContent = cat.description || cat.tagline || '';
+
+      // Show skeleton loader
+      const grid = document.getElementById('courses-grid');
+      grid.innerHTML = Array(4).fill(0).map(() => `
+        <div class="course-card" style="min-height:260px;">
+          <div class="skel" style="height:20px;width:50%;margin-bottom:12px;"></div>
+          <div class="skel" style="height:26px;width:80%;margin-bottom:16px;"></div>
+          <div class="skel" style="height:60px;width:100%;margin-bottom:16px;"></div>
+          <div class="skel" style="height:36px;width:100%;margin-top:auto;"></div>
+        </div>
+      `).join('');
+
+      // If career category, render career support tracks directly
+      if (slug === 'career') {
+        loadedCourses = [];
+        const chipsContainer = document.getElementById('group-chips');
+        if (chipsContainer) chipsContainer.style.display = 'none';
+        renderCareerTracks(cat, accent);
+        return;
+      }
+
+      // Fetch courses from API
+      loadedCourses = await window.odApi.getCategoryCourses(slug);
+
+      // Render group chips (audience/class/degree filters)
+      const groups = ['All', ...new Set(loadedCourses.map(c => c.group_label).filter(Boolean))];
+      const chipsContainer = document.getElementById('group-chips');
+      if (groups.length > 1) {
+        chipsContainer.innerHTML = groups.map(g => `
+          <button class="chp ${g === currentGroupFilter ? 'on' : ''}" 
+                  style="--c:${accent};"
+                  onclick="switchGroupFilter('${g}')">
+            ${g}
+          </button>
+        `).join('');
+        chipsContainer.style.display = 'flex';
+      } else {
+        chipsContainer.innerHTML = '';
+        chipsContainer.style.display = 'none';
+      }
+
+      renderCourses();
+    }
+
+    function switchGroupFilter(group) {
+      currentGroupFilter = group;
+      const cat = allCategories.find(c => c.slug === currentCategorySlug) || {};
+      const chipsContainer = document.getElementById('group-chips');
+      if (chipsContainer) {
+        chipsContainer.querySelectorAll('.chp').forEach(btn => {
+          btn.classList.toggle('on', btn.textContent.trim() === group);
+        });
+      }
+      renderCourses();
+    }
+
+    function renderCareerTracks(cat, accent) {
+      const grid = document.getElementById('courses-grid');
+      document.title = `${cat.name || 'Career Support'} – OD AI Academy`;
+      const careerFeatures = [
+        ['Interview Preparation', 'Mock interviews with industry mentors, curated technical question banks, and actionable feedback.', '🎙️'],
+        ['Mock Hiring Tests', 'Aptitude, live coding, and system design tests designed to mirror Tier-1 company hiring rounds.', '📝'],
+        ['Resume & Portfolio Review', 'Create an ATS-friendly, project-first resume and a live GitHub portfolio that recruiters notice.', '💼'],
+        ['1-on-1 Career Mentorship', 'Private sessions with senior engineers to plan your target roles, roadmap, and transition steps.', '🎯']
+      ];
+      grid.innerHTML = careerFeatures.map((f, i) => `
+        <article class="course-card" style="--track-color:${accent};animation-delay:${i * 40}ms;">
+          <div class="card-top-badges">
+            <span class="cat-badge" style="background:${accent}18;color:${accent};">Placement Track</span>
+            <span class="status-badge">✓ Active Support</span>
+          </div>
+          <h3 class="course-title" style="cursor:default;margin-top:8px;">
+            ${f[2]} ${f[0]}
+          </h3>
+          <p class="course-desc" style="margin-top:8px;">
+            ${f[1]}
+          </p>
+          <div class="card-footer" style="padding-top:16px;">
+            <button class="btn" style="background:${accent};width:100%;justify-content:center;" onclick="openEnquiryModal('${f[0]} Consultation')">
+              Book Free Career Session →
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderCourses() {
+      const grid = document.getElementById('courses-grid');
+      const cat = allCategories.find(c => c.slug === currentCategorySlug) || {};
+      const accent = cat.accent_color || '#A65A3A';
+      document.title = `${cat.name || 'Programs'} – OD AI Academy Course Catalog`;
+      const query = (document.getElementById('course-search')?.value || '').toLowerCase().trim();
+
+      let list = loadedCourses || [];
+
+      // Filter by group chip
+      if (currentGroupFilter !== 'All') {
+        list = list.filter(c => c.group_label === currentGroupFilter);
+      }
+
+      // Filter by search query
+      if (query) {
+        list = list.filter(c => 
+          (c.title && c.title.toLowerCase().includes(query)) ||
+          (c.short_description && c.short_description.toLowerCase().includes(query)) ||
+          (c.target_audience && c.target_audience.toLowerCase().includes(query)) ||
+          (c.group_label && c.group_label.toLowerCase().includes(query))
+        );
+      }
+
+      if (!list.length) {
+        grid.innerHTML = `
+          <div style="grid-column:1/-1;text-align:center;padding:64px 20px;background:#fff;border-radius:16px;border:1.5px solid var(--ln);">
+            <div style="font-size:36px;margin-bottom:12px;">📚</div>
+            <h3 style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:8px;">No courses found</h3>
+            <p style="color:var(--mu);font-size:14.5px;max-width:44ch;margin:0 auto 20px;">
+              ${query ? 'No courses match your search criteria. Try a different search keyword.' : 'We are currently preparing more programs for this track.'}
+            </p>
+            <button class="btn" style="background:${accent};" onclick="openEnquiryModal('${cat.name || 'Academy'} Programs', null, '${cat.slug || ''}')">
+              Enquire about upcoming batches →
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = list.map((c, i) => `
+        <article class="course-card" style="--track-color:${accent};animation-delay:${i * 40}ms;">
+
+          <!-- Medisphere-style: icon box (left) + category pill (right) -->
+          <div class="card-head">
+            <div class="course-icon-box">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">${getCourseIcon(c.title)}</svg>
+            </div>
+            <span class="cat-badge">${c.category_name || cat.name}</span>
+          </div>
+
+          <h3 class="course-title" onclick="openCourseDrawer('${c.slug}')" title="Click to view details">
+            ${c.title}
+          </h3>
+
+          ${c.group_label || c.target_audience ? `
+            <div class="course-for">
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              ${c.group_label || c.target_audience}
+            </div>
+          ` : ''}
+
+          <div class="course-meta">
+            <span>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ${c.duration_formatted || 'Flexible'}
+            </span>
+            <span style="text-transform:capitalize;">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              ${c.mode || 'online'}
+            </span>
+            ${c.batch_size ? `<span><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> ${c.batch_size} seats</span>` : ''}
+          </div>
+
+          <p class="course-desc">${c.short_description || ''}</p>
+
+          <div class="card-footer">
+            <div class="card-pricing">
+              <b>${c.discount_display || c.price_display}</b>
+              ${c.discount_display ? `<s>${c.price_display}</s>` : ''}
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button class="btn o" style="padding:7px 14px;font-size:12px;border:1.5px solid var(--beige-dark);color:var(--charcoal);background:rgba(255,255,255,0.70);backdrop-filter:blur(8px);border-radius:10px;" onclick="openCourseDrawer('${c.slug}')">
+                Details
+              </button>
+              <button class="btn" style="padding:7px 16px;font-size:12px;border-radius:10px;background:linear-gradient(135deg,var(--color-warm-brown) 0%,var(--color-warm-brown-dark) 100%);box-shadow:0 4px 12px rgba(107,88,64,0.30);" data-enq="${c.title}" data-course-id="${c.id}" data-category="${c.category_slug || currentCategorySlug || ''}" data-audience="${c.group_label || c.target_audience || ''}">
+                Enquire →
+              </button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', (e) => {
+      const slug = e.state?.category || new URLSearchParams(window.location.search).get('category') || 'school';
+      switchCategory(slug, false);
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar')?.classList.toggle('nav-scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Run init
+    initProgramsPage();
+  </script>
+</body>
+</html>

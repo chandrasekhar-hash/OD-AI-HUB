@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    background-color: #F7F3EA;
+    color: #20201D;
+  }
+
+  body {
+    background-color: #F7F3EA;
+    color: #20201D;
+  }
+
+  ::selection {
+    background-color: #A65A3A;
+    color: #FFFFFF;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #E5D4B8;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #8C684B;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8F4A2D;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-height: 850px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+/* Custom depth, glassmorphism and background effects */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(229, 212, 184, 0.45);
+}
+
+.hero-pattern {
+  background-color: #F7F3EA;
+  background-image: radial-gradient(#E5D4B8 1.5px, transparent 1.5px);
+  background-size: 36px 36px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #A65A3A 0%, #8C684B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Global background with subtle dot-grid texture */
+body {
+  @apply bg-cream text-on-surface font-body antialiased;
+  background-image: radial-gradient(rgba(32,32,29,0.06) 0.5px, transparent 0.5px);
+  background-size: 12px 12px;
+}
+
+/* Card component styling */
+.card {
+  @apply bg-surface rounded-[20px] shadow-md p-6;
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  @apply text-on-surface font-headline;
+}
+
+/* Subtle gradient for headline text */
+.gradient-headline {
+  background: linear-gradient(135deg, #A65A3A, #8C684B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
